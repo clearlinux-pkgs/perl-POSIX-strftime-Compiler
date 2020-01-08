@@ -4,7 +4,7 @@
 #
 Name     : perl-POSIX-strftime-Compiler
 Version  : 0.42
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/K/KA/KAZEBURO/POSIX-strftime-Compiler-0.42.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/K/KA/KAZEBURO/POSIX-strftime-Compiler-0.42.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libp/libposix-strftime-compiler-perl/libposix-strftime-compiler-perl_0.42-1.debian.tar.xz
@@ -12,6 +12,7 @@ Summary  : 'GNU C library compatible strftime for loggers and servers'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-POSIX-strftime-Compiler-license = %{version}-%{release}
+Requires: perl-POSIX-strftime-Compiler-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -22,6 +23,7 @@ BuildRequires : buildreq-cpan
 Summary: dev components for the perl-POSIX-strftime-Compiler package.
 Group: Development
 Provides: perl-POSIX-strftime-Compiler-devel = %{version}-%{release}
+Requires: perl-POSIX-strftime-Compiler = %{version}-%{release}
 
 %description dev
 dev components for the perl-POSIX-strftime-Compiler package.
@@ -35,18 +37,28 @@ Group: Default
 license components for the perl-POSIX-strftime-Compiler package.
 
 
+%package perl
+Summary: perl components for the perl-POSIX-strftime-Compiler package.
+Group: Default
+Requires: perl-POSIX-strftime-Compiler = %{version}-%{release}
+
+%description perl
+perl components for the perl-POSIX-strftime-Compiler package.
+
+
 %prep
 %setup -q -n POSIX-strftime-Compiler-0.42
-cd ..
-%setup -q -T -D -n POSIX-strftime-Compiler-0.42 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libposix-strftime-compiler-perl_0.42-1.debian.tar.xz
+cd %{_builddir}/POSIX-strftime-Compiler-0.42
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/POSIX-strftime-Compiler-0.42/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/POSIX-strftime-Compiler-0.42/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -58,7 +70,7 @@ fi
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-POSIX-strftime-Compiler
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-POSIX-strftime-Compiler/LICENSE
+cp %{_builddir}/POSIX-strftime-Compiler-0.42/LICENSE %{buildroot}/usr/share/package-licenses/perl-POSIX-strftime-Compiler/220fe941787679d8a043c0444548ac186c86f309
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -71,7 +83,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/POSIX/strftime/Compiler.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -79,4 +90,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-POSIX-strftime-Compiler/LICENSE
+/usr/share/package-licenses/perl-POSIX-strftime-Compiler/220fe941787679d8a043c0444548ac186c86f309
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/POSIX/strftime/Compiler.pm
