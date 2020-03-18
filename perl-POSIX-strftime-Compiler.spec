@@ -4,7 +4,7 @@
 #
 Name     : perl-POSIX-strftime-Compiler
 Version  : 0.42
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/K/KA/KAZEBURO/POSIX-strftime-Compiler-0.42.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/K/KA/KAZEBURO/POSIX-strftime-Compiler-0.42.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libp/libposix-strftime-compiler-perl/libposix-strftime-compiler-perl_0.42-1.debian.tar.xz
@@ -71,6 +71,7 @@ fi
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-POSIX-strftime-Compiler
 cp %{_builddir}/POSIX-strftime-Compiler-0.42/LICENSE %{buildroot}/usr/share/package-licenses/perl-POSIX-strftime-Compiler/220fe941787679d8a043c0444548ac186c86f309
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-POSIX-strftime-Compiler/3b7b30529919e2a4d04def7f91eec8e9aa500921
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -91,7 +92,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/perl-POSIX-strftime-Compiler/220fe941787679d8a043c0444548ac186c86f309
+/usr/share/package-licenses/perl-POSIX-strftime-Compiler/3b7b30529919e2a4d04def7f91eec8e9aa500921
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/POSIX/strftime/Compiler.pm
+/usr/lib/perl5/vendor_perl/5.30.2/POSIX/strftime/Compiler.pm
