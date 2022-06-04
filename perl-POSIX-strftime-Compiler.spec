@@ -4,7 +4,7 @@
 #
 Name     : perl-POSIX-strftime-Compiler
 Version  : 0.44
-Release  : 21
+Release  : 22
 URL      : https://cpan.metacpan.org/authors/id/K/KA/KAZEBURO/POSIX-strftime-Compiler-0.44.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/K/KA/KAZEBURO/POSIX-strftime-Compiler-0.44.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libp/libposix-strftime-compiler-perl/libposix-strftime-compiler-perl_0.42-1.debian.tar.xz
@@ -100,4 +100,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/POSIX/strftime/Compiler.pm
+/usr/lib/perl5/*
