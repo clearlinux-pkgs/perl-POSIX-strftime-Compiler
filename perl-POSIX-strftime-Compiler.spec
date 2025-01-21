@@ -7,7 +7,7 @@
 #
 Name     : perl-POSIX-strftime-Compiler
 Version  : 0.46
-Release  : 29
+Release  : 30
 URL      : https://cpan.metacpan.org/authors/id/K/KA/KAZEBURO/POSIX-strftime-Compiler-0.46.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/K/KA/KAZEBURO/POSIX-strftime-Compiler-0.46.tar.gz
 Summary  : 'GNU C library compatible strftime for loggers and servers'
